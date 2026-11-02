@@ -11,7 +11,7 @@ interface FileMeasurements {
 }
 export type ScanMeasurements = Map<string, FileMeasurements[]>;
 
-/** File-major execution is opt-in: rules must be independent across files.
+/** File-major execution: rules must be independent across files.
  * Keep only one parsed file per worker; never transfer an AST between threads.
  */
 export async function scanFiles(ctx: ProjectContext, ruleIds: string[], fileIndices = ctx.filesAbsolute.map((_, index) => index), backend: ParserBackend = 'oxc'): Promise<ScanMeasurements> {

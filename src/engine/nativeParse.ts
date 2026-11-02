@@ -4,7 +4,7 @@ import { parseSync } from 'oxc-parser';
 import type { SeloFile } from '../contract/index.js';
 import { fileFromParsed, parseSource, setParents } from './parse.js';
 
-/** Explicit alternative backend. Preserve source positions and the legacy
+/** Default native backend. Preserve source positions and the legacy
  * child-property traversal order used by rule packs. Lexical tokens and ESLint
  * scopes remain available lazily through the original parser.
  */
