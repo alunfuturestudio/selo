@@ -1,4 +1,4 @@
-import type { SeloFile, SeloMeasurement, SeloRule } from '../contract/index.js';
+import type { SeloFile, SeloMeasurement, SeloRule, SeloRuleType } from '../contract/index.js';
 
 export interface RuleAggregate {
   measurements: SeloMeasurement[];
@@ -27,9 +27,16 @@ export function runRule(params: RunRuleParams): RuleAggregate {
     }
     out.push(...measured);
   }
-  const worst = out.length === 0 ? 0 : Math.max(...out.map((m) => m.value));
-  const violationsVsGoal =
-    rule.meta.type === 'count' ? out.length : out.filter((m) => m.value > goal).length;
+  return aggregateMeasurements(out, rule.meta.type, goal);
+}
+
+export function aggregateMeasurements(out: SeloMeasurement[], type: SeloRuleType, goal: number): RuleAggregate {
+  let worst = out.length === 0 ? 0 : -Infinity;
+  let violationsVsGoal = 0;
+  for (const measurement of out) {
+    worst = Math.max(worst, measurement.value);
+    if (type === 'count' || measurement.value > goal) violationsVsGoal++;
+  }
   return {
     measurements: out,
     worst,

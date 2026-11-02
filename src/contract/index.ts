@@ -19,8 +19,18 @@ export interface SeloFile {
   path: string;
   /** The file's source text. */
   source: string;
-  /** Parsed AST root from `@typescript-eslint/parser`. */
+  /** TS-ESTree AST with locations and parent links; tokens may be lazy. */
   ast: unknown;
+  /** Optional engine-prepared parse for compatible adapters. Treat ASTs and this
+   * data as read-only. Optional; consumers must support fallback when unavailable.
+   */
+  parserData?: {
+    name: string;
+    version: string;
+    source: string;
+    jsx: boolean;
+    result: unknown;
+  };
 }
 
 export interface SeloMeasurement {

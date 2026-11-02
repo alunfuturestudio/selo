@@ -13,7 +13,7 @@ export interface ProjectContext {
   filesAbsolute: string[];
 }
 
-export async function loadProject(cwd: string): Promise<ProjectContext> {
+export async function loadProject(cwd: string, knownFiles?: string[]): Promise<ProjectContext> {
   const configPath = await findConfigFile(cwd);
   if (!configPath) {
     throw new Error(`selo: no selo.config.{mjs,js,ts,json} found in ${cwd}`);
@@ -33,7 +33,7 @@ export async function loadProject(cwd: string): Promise<ProjectContext> {
       ruleMap.set(id, rule);
     }
   }
-  const filesAbsolute = await discoverFiles({
+  const filesAbsolute = knownFiles ?? await discoverFiles({
     cwd,
     files: config.files,
     ignore: config.ignore,
