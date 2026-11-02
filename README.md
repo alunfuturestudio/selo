@@ -113,7 +113,7 @@ interface SeloMeasurement {
 interface SeloFile {
   path: string;                 // project-relative
   source: string;
-  ast: unknown;                 // @typescript-eslint/parser AST
+  ast: unknown;                 // TS-ESTree AST; lexical tokens may be lazy
 }
 ```
 
@@ -139,6 +139,42 @@ The verifier. Run in pre-commit and CI.
 - Auto-updates baseline downward on improvement, including `current`, so `selo get-maxes` sees the tighter cap.
 - **Exits 1 on regression or when it writes the baseline.** If the only issue is a baseline write, review and commit `selo.baseline.json`, then rerun.
 - `--dont-bless-baseline` makes the command read-only: it reports seeds/improvements/regressions but does not write `selo.baseline.json`.
+
+### Native parsing and bounded parallelism
+
+`selo check` uses the native Oxc parser and bounded file-at-a-time workers by
+default. There is **no persistent cache**. Every invocation scans the full
+workload and applies the unchanged baseline/ratchet algorithm.
+
+```sh
+selo check --dont-bless-baseline          # native parser, automatic worker count
+selo check --dont-bless-baseline --jobs 2 # useful on small CI machines
+selo check --parser typescript --jobs 1   # compatibility/diagnostic backend
+```
+
+`--jobs 1` streams one file at a time; `--jobs N` uses 1–32 workers. `auto` uses
+at most 8 workers with Oxc, or 4 with TypeScript, respecting available CPUs.
+Measurements merge in the original file/rule order. More workers use more memory.
+Rules must be deterministic and file-independent, and treat ASTs as read-only.
+Config modules load once per worker. A rule must not rely on mutable state shared
+between files or on another rule having processed the entire project first.
+
+Oxc's TS-ESTree adapter preserves source positions and structural traversal
+order. Lexical tokens and ESLint scopes remain available on demand through the
+original parser. Native parse errors and unsupported import proposals fall back
+to that parser. Lumina and syntax fixtures compare complete measurements; new
+third-party packs should validate their AST assumptions. Updated `selo-solid`
+skips lexical metadata in structural walks, and updated `selo-eslint-raiz` shares
+ESLint work per file. These pack changes are required for the measured speedup.
+
+Node **20.19+ or 22.12+** is required by the native binding (a runtime support
+change from 0.1.1). Keep native platform packages installed; omitting optional
+platform bindings prevents the native backend from loading. The TypeScript
+backend is retained for diagnostics, not used by the normal execution path
+unless a syntax/lexical/ESLint fallback requires it.
+
+Worker/parser flags also apply to `bless-current` and `histogram`. See the
+[performance investigation](benchmarks/REPORT.md) for reproducible measurements.
 
 ### `selo bless-current`
 

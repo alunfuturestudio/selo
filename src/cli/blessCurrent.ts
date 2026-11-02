@@ -1,6 +1,6 @@
+import { scanProject } from '../engine/scanProject.js';
 import * as path from 'node:path';
-import { runRule } from '../engine/runRule.js';
-import { filesForRule, loadProject, parseAllFiles, projectRoot, resolveOptions } from '../engine/loadProject.js';
+import { loadProject, projectRoot } from '../engine/loadProject.js';
 import { readBaseline, writeBaseline, type Baseline } from '../ratchet/baseline.js';
 import { migrateBaseline } from '../ratchet/verdict.js';
 import { parseCommonArgs } from './args.js';
@@ -11,7 +11,7 @@ export async function runBlessCurrent(rest: string[]): Promise<void> {
   const ctx = await loadProject(cwd);
   const baselinePath = path.join(cwd, 'selo.baseline.json');
   const baseline: Baseline = await readBaseline(baselinePath);
-  const files = await parseAllFiles(ctx);
+  const scanned = await scanProject(ctx, args.jobs, undefined, args.parser);
   let dirty = false;
 
   for (const [ruleId, ruleCfg] of Object.entries(ctx.config.rules)) {
@@ -19,9 +19,7 @@ export async function runBlessCurrent(rest: string[]): Promise<void> {
     if (!rule) continue;
     if (typeof ruleCfg.goal !== 'number' && rule.meta.type === 'threshold') continue;
     const goal = ruleCfg.goal ?? 0;
-    const ruleFiles = filesForRule(files, ruleCfg);
-    const options = resolveOptions(rule, ruleCfg);
-    const aggregate = runRule({ rule, options, files: ruleFiles, goal });
+    const aggregate = scanned.get(ruleId)!;
 
     // Pick the metric to bless based on rule type.
     //   threshold: per-unit value cap (worst measurement)

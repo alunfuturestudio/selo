@@ -1,7 +1,8 @@
+import type { ParserBackend } from '../engine/parse.js';
+import { scanProject } from '../engine/scanProject.js';
 import * as path from 'node:path';
-import { runRule } from '../engine/runRule.js';
 import { formatOffenderLines } from '../engine/render.js';
-import { filesForRule, loadProject, parseAllFiles, projectRoot, resolveOptions } from '../engine/loadProject.js';
+import { loadProject, projectRoot } from '../engine/loadProject.js';
 import { readBaseline, writeBaseline, type Baseline } from '../ratchet/baseline.js';
 import { migrateBaseline, verdict } from '../ratchet/verdict.js';
 import { parseCommonArgs } from './args.js';
@@ -9,12 +10,16 @@ import { parseCommonArgs } from './args.js';
 export interface CheckArgs {
   cwd: string | undefined;
   blessBaseline: boolean;
+  jobs: number;
+  parser: ParserBackend;
 }
 
 export function parseCheckArgs(rest: string[]): CheckArgs {
   const args = parseCommonArgs(rest);
   return {
     cwd: args.cwd,
+    jobs: args.jobs,
+    parser: args.parser,
     blessBaseline: !args.positional.includes('--dont-bless-baseline'),
   };
 }
@@ -26,7 +31,7 @@ export async function runCheck(rest: string[]): Promise<void> {
   const baselinePath = path.join(cwd, 'selo.baseline.json');
   const baseline: Baseline = await readBaseline(baselinePath);
 
-  const files = await parseAllFiles(ctx);
+  const scanned = await scanProject(ctx, args.jobs, undefined, args.parser);
   let regressed = false;
   let dirty = false;
   let baselineChanged = false;
@@ -42,9 +47,7 @@ export async function runCheck(rest: string[]): Promise<void> {
       continue;
     }
     const goal = ruleCfg.goal ?? 0;
-    const ruleFiles = filesForRule(files, ruleCfg);
-    const options = resolveOptions(rule, ruleCfg);
-    const aggregate = runRule({ rule, options, files: ruleFiles, goal });
+    const aggregate = scanned.get(ruleId)!;
 
     // Persist the count-rule migration if a stale baseline is observed, so future runs
     // don't redo the migration on every check.

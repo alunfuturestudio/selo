@@ -6,6 +6,10 @@ All notable changes to `@guilhermesilveira/selo` are documented here. The format
 
 ### Changed
 
+- Native Oxc parsing and bounded streaming workers are now the default. Preserve deterministic measurement order and baseline behavior; retain TypeScript for syntax/lexical/ESLint compatibility. Node support is now `^20.19.0 || >=22.12.0`.
+- Add `--jobs N|auto` and a diagnostic `--parser typescript` backend. No persistent cache.
+
+
 - **`selo check`, baseline blessing** — improvements now tighten `current` by default, not only `worst` / `violationsVsGoal`, so `selo get-maxes` sees the lower cap immediately. Any baseline write exits non-zero so the generated `selo.baseline.json` diff must be reviewed and committed.
 
 ### Added

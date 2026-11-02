@@ -1,0 +1,271 @@
+{
+  "date": "2026-11-02",
+  "cpu": "Apple M5 Pro",
+  "node": "v24.22.1",
+  "availableParallelism": 18,
+  "cliSummary": [
+    {
+      "variant": "installed-0.1.1",
+      "medianMs": 19805.323583000005,
+      "minMs": 19138.811166,
+      "maxMs": 20031.885041,
+      "reductionPercent": 0
+    },
+    {
+      "variant": "default-fast",
+      "medianMs": 1674.260957999999,
+      "minMs": 1654.2579589999987,
+      "maxMs": 1795.6751659999863,
+      "reductionPercent": 91.54640947428344
+    },
+    {
+      "variant": "typescript-4",
+      "medianMs": 3224.7749159999985,
+      "minMs": 3199.060792,
+      "maxMs": 3493.3516670000026,
+      "reductionPercent": 83.71763580390072
+    },
+    {
+      "variant": "native-2",
+      "medianMs": 2937.195833000005,
+      "minMs": 2925.8065840000017,
+      "maxMs": 3005.6762920000037,
+      "reductionPercent": 85.16966501107227
+    },
+    {
+      "variant": "native-4",
+      "medianMs": 2050.4373330000017,
+      "minMs": 2047.4141249999957,
+      "maxMs": 2050.6206249999996,
+      "reductionPercent": 89.64703947195287
+    },
+    {
+      "variant": "native-8",
+      "medianMs": 1655.1448749999981,
+      "minMs": 1651.7645830000001,
+      "maxMs": 1674.4720420000012,
+      "reductionPercent": 91.64292939691882
+    }
+  ],
+  "cliRuns": [
+    {
+      "variant": "installed-0.1.1",
+      "round": 1,
+      "totalMs": 19138.811166,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "default-fast",
+      "round": 1,
+      "totalMs": 1674.260957999999,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "typescript-4",
+      "round": 1,
+      "totalMs": 3199.060792,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-2",
+      "round": 1,
+      "totalMs": 2925.8065840000017,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-4",
+      "round": 1,
+      "totalMs": 2050.6206249999996,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-8",
+      "round": 1,
+      "totalMs": 1651.7645830000001,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "default-fast",
+      "round": 2,
+      "totalMs": 1654.2579589999987,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "typescript-4",
+      "round": 2,
+      "totalMs": 3224.7749159999985,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-2",
+      "round": 2,
+      "totalMs": 2937.195833000005,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-4",
+      "round": 2,
+      "totalMs": 2050.4373330000017,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-8",
+      "round": 2,
+      "totalMs": 1674.4720420000012,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "installed-0.1.1",
+      "round": 2,
+      "totalMs": 20031.885041,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "typescript-4",
+      "round": 3,
+      "totalMs": 3493.3516670000026,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-2",
+      "round": 3,
+      "totalMs": 3005.6762920000037,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-4",
+      "round": 3,
+      "totalMs": 2047.4141249999957,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "native-8",
+      "round": 3,
+      "totalMs": 1655.1448749999981,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "installed-0.1.1",
+      "round": 3,
+      "totalMs": 19805.323583000005,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    },
+    {
+      "variant": "default-fast",
+      "round": 3,
+      "totalMs": 1795.6751659999863,
+      "code": 1,
+      "stdoutSha256": "38e4044bb064b3a2af88639fd8ae351b4abbc1ec8f54e220f8090650cd1b7e70",
+      "stderrSha256": "462f52c474e915944b2e8be99a50ce67c079cdc0ba3add62f227ca8e27382141"
+    }
+  ],
+  "baselineSha256": "a49786c76e41620dc898086fd2dc04b6758b0f7643609314407556ad9b45a041",
+  "inputSha256": "f125518150bfcaf9de5857970c5d3d40619f0573d8112af4808511fd8c4f8687",
+  "resultsSha256": "2608b661df443f5e4dfde6c72fa19ce9bc8a6d0fbf713c71867a53f8f618fd9c",
+  "files": 4270,
+  "rules": 15,
+  "measurements": 154491,
+  "tests": {
+    "engine": 75,
+    "eslintPack": 54,
+    "solidPack": 31,
+    "semanticFixtures": {
+      "rules": 12,
+      "sources": 15,
+      "backends": 2,
+      "workers": [
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  "packs": {
+    "eslintCommit": "07c25a43eb93e58ab149da03688b90ad2ad18872",
+    "solidCommit": "4fba7aedc86d027bcd61474e53bb49d3af821607"
+  },
+  "scanSummary": [
+    {
+      "variant": "original",
+      "medianMs": 20286.015083000002,
+      "minMs": 20286.015083000002,
+      "maxMs": 20286.015083000002,
+      "medianMaxRssKiB": 3946848,
+      "reductionPercent": 0
+    },
+    {
+      "variant": "typescript-4",
+      "medianMs": 3124.8218340000003,
+      "minMs": 3124.8218340000003,
+      "maxMs": 3124.8218340000003,
+      "medianMaxRssKiB": 2135632,
+      "reductionPercent": 84.59617711406194
+    },
+    {
+      "variant": "native-1",
+      "medianMs": 4507.728416000001,
+      "minMs": 4507.728416000001,
+      "maxMs": 4507.728416000001,
+      "medianMaxRssKiB": 634592,
+      "reductionPercent": 77.77913307489578
+    },
+    {
+      "variant": "native-2",
+      "medianMs": 2935.600333,
+      "minMs": 2935.600333,
+      "maxMs": 2935.600333,
+      "medianMaxRssKiB": 1099616,
+      "reductionPercent": 85.5289453301251
+    },
+    {
+      "variant": "native-4",
+      "medianMs": 1917.37825,
+      "minMs": 1917.37825,
+      "maxMs": 1917.37825,
+      "medianMaxRssKiB": 1751616,
+      "reductionPercent": 90.54827553782707
+    },
+    {
+      "variant": "native-8",
+      "medianMs": 1561.834417,
+      "minMs": 1561.834417,
+      "maxMs": 1561.834417,
+      "medianMaxRssKiB": 2956816,
+      "reductionPercent": 92.30093041630023
+    }
+  ]
+}

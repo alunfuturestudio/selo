@@ -5,3 +5,10 @@ dist
 .env*
 !.env.example
 coverage
+
+# Local performance investigation (separate pack checkout, workload and raw profiles)
+packs/
+benchmarks/results/
+benchmarks/original-dist/
+benchmarks/workload/
+benchmarks/native-prototype/

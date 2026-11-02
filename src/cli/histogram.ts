@@ -1,6 +1,6 @@
+import { scanProject } from '../engine/scanProject.js';
 import * as path from 'node:path';
-import { runRule } from '../engine/runRule.js';
-import { filesForRule, loadProject, parseAllFiles, projectRoot, resolveOptions } from '../engine/loadProject.js';
+import { loadProject, projectRoot } from '../engine/loadProject.js';
 import { readBaseline } from '../ratchet/baseline.js';
 import { parseCommonArgs } from './args.js';
 
@@ -32,10 +32,8 @@ export async function runHistogram(rest: string[]): Promise<void> {
   const baseline = await readBaseline(path.join(cwd, 'selo.baseline.json'));
   const cap = baseline[ruleId]?.current ?? goal;
 
-  const files = await parseAllFiles(ctx);
-  const ruleFiles = filesForRule(files, ruleCfg);
-  const options = resolveOptions(rule, ruleCfg);
-  const aggregate = runRule({ rule, options, files: ruleFiles, goal });
+  const scanned = await scanProject(ctx, args.jobs, [ruleId], args.parser);
+  const aggregate = scanned.get(rule.meta.id)!;
   renderHistogram(rule.meta.id, rule.meta.unitLabel, aggregate.measurements.map((m) => m.value), cap);
 }
 
